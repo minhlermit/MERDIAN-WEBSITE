@@ -1,0 +1,352 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Stripi Brand Colors */
+  --stripi-primary: #533afd;
+  --stripi-primary-deep: #4434d4;
+  --stripi-primary-press: #2e2b8c;
+  --stripi-primary-soft: #665efd;
+  --stripi-primary-subdued: #b9b9f9;
+  --stripi-ink: #0d253d;
+  --stripi-ink-secondary: #273951;
+  --stripi-ink-mute: #64748d;
+  --stripi-ink-mute-2: #61718a;
+  --stripi-canvas: #ffffff;
+  --stripi-canvas-soft: #f6f9fc;
+  --stripi-canvas-cream: #f5e9d4;
+  --stripi-hairline: #e3e8ee;
+  --stripi-hairline-input: #a8c3de;
+  --stripi-ruby: #ea2261;
+  --stripi-magenta: #f96bee;
+  --stripi-lemon: #9b6829;
+  --stripi-brand-dark-900: #1c1e54;
+
+  /* Tailwind Overrides */
+  --primary: var(--stripi-primary);
+  --primary-foreground: var(--stripi-canvas);
+  --sidebar-primary: var(--stripi-primary);
+  --sidebar-primary-foreground: var(--stripi-canvas);
+  --chart-1: #533afd;
+  --chart-2: #ea2261;
+  --chart-3: #f96bee;
+  --chart-4: #4434d4;
+  --chart-5: #2e2b8c;
+  --radius: 0.75rem;
+  --background: var(--stripi-canvas);
+  --foreground: var(--stripi-ink);
+  --card: var(--stripi-canvas);
+  --card-foreground: var(--stripi-ink);
+  --popover: var(--stripi-canvas);
+  --popover-foreground: var(--stripi-ink);
+  --secondary: var(--stripi-canvas-soft);
+  --secondary-foreground: var(--stripi-ink);
+  --muted: var(--stripi-canvas-soft);
+  --muted-foreground: var(--stripi-ink-mute);
+  --accent: var(--stripi-primary);
+  --accent-foreground: var(--stripi-canvas);
+  --destructive: #ef4444;
+  --destructive-foreground: var(--stripi-canvas);
+  --border: var(--stripi-hairline);
+  --input: var(--stripi-hairline-input);
+  --ring: var(--stripi-primary);
+  --sidebar: var(--stripi-canvas);
+  --sidebar-foreground: var(--stripi-ink);
+  --sidebar-accent: var(--stripi-primary);
+  --sidebar-accent-foreground: var(--stripi-canvas);
+  --sidebar-border: var(--stripi-hairline);
+  --sidebar-ring: var(--stripi-primary);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-feature-settings: "ss01";
+    font-weight: 300;
+  }
+
+  /* Typography System */
+  h1 {
+    @apply text-5xl font-light leading-tight;
+    letter-spacing: -1.4px;
+  }
+
+  h2 {
+    @apply text-4xl font-light leading-snug;
+    letter-spacing: -0.96px;
+  }
+
+  h3 {
+    @apply text-2xl font-light leading-tight;
+    letter-spacing: -0.64px;
+  }
+
+  h4 {
+    @apply text-xl font-light leading-snug;
+    letter-spacing: -0.26px;
+  }
+
+  h5 {
+    @apply text-lg font-light leading-snug;
+    letter-spacing: -0.22px;
+  }
+
+  p {
+    @apply text-base font-light leading-relaxed;
+    letter-spacing: 0;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1200px;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  /* Stripi Button Styles */
+  .btn-primary-pill {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-full;
+    background-color: var(--stripi-primary);
+    color: var(--stripi-canvas);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    transition: all 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .btn-primary-pill:hover {
+    background-color: var(--stripi-primary-deep);
+  }
+
+  .btn-primary-pill:active {
+    background-color: var(--stripi-primary-press);
+    transform: scale(0.97);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-full;
+    background-color: var(--stripi-canvas);
+    color: var(--stripi-primary);
+    border: 1px solid var(--stripi-primary);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    transition: all 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--stripi-canvas-soft);
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.97);
+  }
+
+  /* Card Styles */
+  .card-feature {
+    @apply p-8 rounded-lg border;
+    background-color: var(--stripi-canvas);
+    border-color: var(--stripi-hairline);
+    box-shadow: 0 1px 3px rgba(13, 37, 61, 0.08);
+  }
+
+  .card-pricing {
+    @apply p-8 rounded-lg border;
+    background-color: var(--stripi-canvas);
+    border-color: var(--stripi-hairline);
+    box-shadow: 0 1px 3px rgba(13, 37, 61, 0.08);
+  }
+
+  .card-pricing-featured {
+    @apply p-8 rounded-lg;
+    background-color: var(--stripi-brand-dark-900);
+    color: var(--stripi-canvas);
+    box-shadow: 0 8px 24px rgba(13, 37, 61, 0.08), 0 2px 6px rgba(13, 37, 61, 0.04);
+  }
+
+  .card-cream {
+    @apply p-8 rounded-lg;
+    background-color: var(--stripi-canvas-cream);
+    color: var(--stripi-ink);
+  }
+
+  /* Input Styles */
+  .input-text {
+    @apply px-3 py-2 rounded-md border;
+    background-color: var(--stripi-canvas);
+    color: var(--stripi-ink);
+    border-color: var(--stripi-hairline-input);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.4;
+    transition: border-color 120ms ease-out;
+  }
+
+  .input-text:focus {
+    outline: none;
+    border-color: var(--stripi-primary);
+  }
+
+  /* Tag/Pill Styles */
+  .pill-tag {
+    @apply inline-flex items-center px-2 py-1 rounded-full;
+    background-color: var(--stripi-primary-subdued);
+    color: var(--stripi-primary-deep);
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.15;
+    letter-spacing: 0.1px;
+    text-transform: uppercase;
+  }
+
+  /* Gradient Mesh Background */
+  .gradient-mesh {
+    background: linear-gradient(
+      90deg,
+      #f5e9d4 0%,
+      #f5c89a 20%,
+      #e8b4d4 40%,
+      #d4a5f0 60%,
+      #c89fd4 80%,
+      #ea2261 100%
+    );
+    background-size: 200% 100%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% center;
+    }
+    50% {
+      background-position: 100% center;
+    }
+  }
+
+  /* Link Styles */
+  .link-primary {
+    color: var(--stripi-primary);
+    text-decoration: none;
+    transition: color 120ms ease-out;
+  }
+
+  .link-primary:hover {
+    color: var(--stripi-primary-deep);
+  }
+
+  /* Tabular Figures for Money */
+  .tabular-figures {
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Responsive Utilities */
+  @media (max-width: 768px) {
+    h1 {
+      @apply text-3xl;
+      letter-spacing: -0.64px;
+    }
+
+    h2 {
+      @apply text-2xl;
+      letter-spacing: -0.26px;
+    }
+
+    h3 {
+      @apply text-xl;
+      letter-spacing: -0.22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
